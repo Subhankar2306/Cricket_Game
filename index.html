@@ -31,6 +31,15 @@
       sowResult('Stump' , computerChoice , reusltMsg); "> Stump </button>
 
     <script>
+      let score={
+        win:0,
+        lost: 0,
+        tie: 0,
+        displayScore: function(){
+          return `Score is : Won: ${score.win} , Lost: ${score.lost} , Tie: ${score.tie}`; // Encapsulating 
+        }
+      };
+
       function computerGenerareChoise() {
         // This will generate random number between 0 to 3
         let randomNumber = Math.random() * 3;
@@ -47,39 +56,51 @@
     function getResult(userMove, computerMove){
       if (userMove==='Bat'){
         if(computerMove === 'Ball'){
+          score.win ++;
           return 'User won.';
         }else if(computerMove=== 'Bat'){
+          score.tie ++;
           return `It's a tie tie`;
         }
         else if(computerMove === 'Stump'){
+          score.lost ++;
           return 'You are Out!! Computer has Own ';
         }
       }
       else if(userMove==='Ball'){
         if(computerMove === 'Ball'){
+          score.tie ++;
           return `It's a tie tie`;
         }
         else if(computerMove=== 'Bat'){
+          score.lost ++;
           return 'You are Out!! Computer has Own ' ;
         }
         else if(computerMove === 'Stump'){
+          score.win++;
           return 'User won.';
         }
 
       }
       else{
         if(computerMove=== 'Ball'){
+          score.lost++;
           return'Computer has Own ';
         }else if(computerMove=== 'Bat'){
+          score.win++;
           return 'User won.' ;
         }
         else if(computerMove === 'Stump'){
+          score.tie++;
           return `It's a tie tie` ;
         }
       }
     }
     function sowResult (userMove , computerMove, result ){
-      alert(`You have choosen ${userMove}. Computer choise is ${computerMove} and ${result}`);
+      alert(`You have choosen ${userMove}. Computer choise is ${computerMove}
+       ${result}
+
+       ${score.displayScore()}`);
     }
     </script>
   </body>
