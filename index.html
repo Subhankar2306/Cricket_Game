@@ -1,108 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bat Ball Stump Game</title>
-  <style>
-    body{
-      text-align: center;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bat Ball Stump Game</title>
+    <style>
+      body {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bat Ball Stump Game</h1>
+    <button
+      onclick=" 
+      let computerChoice=computerGenerareChoise();
+      let reusltMsg= getResult('Bat', computerChoice);
+      sowResult('Bat' , computerChoice , reusltMsg); "> Bat </button>
+
+    <button
+      onclick=" 
+      computerChoice = computerGenerareChoise();
+      reusltMsg= getResult('Ball', computerChoice);
+      sowResult('Ball' , computerChoice , reusltMsg); "> Ball </button>
+
+    <button
+      onclick=" 
+      computerChoice = computerGenerareChoise();
+      reusltMsg= getResult('Stump', computerChoice);
+      sowResult('Stump' , computerChoice , reusltMsg); "> Stump </button>
+
+    <script>
+      function computerGenerareChoise() {
+        // This will generate random number between 0 to 3
+        let randomNumber = Math.random() * 3;
+        // let Choise;
+        if (randomNumber > 0 && randomNumber <= 1) {
+         return "Bat";
+        } else if (randomNumber > 1 && randomNumber <= 2) {
+          return "Ball";
+        } else {
+          return "Stump";
+        }
+      }
+
+    function getResult(userMove, computerMove){
+      if (userMove==='Bat'){
+        if(computerMove === 'Ball'){
+          return 'User won.';
+        }else if(computerMove=== 'Bat'){
+          return `It's a tie tie`;
+        }
+        else if(computerMove === 'Stump'){
+          return 'You are Out!! Computer has Own ';
+        }
+      }
+      else if(userMove==='Ball'){
+        if(computerMove === 'Ball'){
+          return `It's a tie tie`;
+        }
+        else if(computerMove=== 'Bat'){
+          return 'You are Out!! Computer has Own ' ;
+        }
+        else if(computerMove === 'Stump'){
+          return 'User won.';
+        }
+
+      }
+      else{
+        if(computerMove=== 'Ball'){
+          return'Computer has Own ';
+        }else if(computerMove=== 'Bat'){
+          return 'User won.' ;
+        }
+        else if(computerMove === 'Stump'){
+          return `It's a tie tie` ;
+        }
+      }
     }
-  </style>
-</head>
-<body>
-  <h1>Bat Ball Stump Game</h1>
-  <button onclick=" 
-  // const userChoiseMsg='You have choosen bat'; 
-  // This will generate random number between 0 to 3
-  let randomNumber = Math.random() *3;
-  let computerChoice;
-  if(randomNumber > 0 && randomNumber<= 1){
-     computerChoice ='Bat';
-    // console.log('Computer choise is bat');
-  }
-  else if(randomNumber > 1 && randomNumber<= 2){
-    computerChoice='Ball'
-    // console.log('Computer choise is ball');
-  } else{
-     computerChoice='Stump'
-    // console.log(' Computer choise is stump');
-  }
-
-  let reusltMsg;
-  if(computerChoice === 'Ball'){
-    reusltMsg='User won.';
-  }else if(computerChoice=== 'Bat'){
-    reusltMsg= `It's a tie tie`;
-  }
-  else if(computerChoice === 'Stump'){
-    reusltMsg='You are Out!! Computer has Own ';
-  }
-
-  alert(`You have choosen Bat. Computer choise is ${computerChoice} and ${reusltMsg}`);
-
-  ">Bat</button>
-
-  <button onclick= " 
-  // This will generate random number between 0 to 3
-  randomNumber = Math.random() *3;
-  // computerChoice;
-  if(randomNumber > 0 && randomNumber<= 1){
-     computerChoice ='Bat';
-    // console.log('Computer choise is bat');
-  }
-  else if(randomNumber > 1 && randomNumber<= 2){
-    computerChoice='Ball'
-    // console.log('Computer choise is ball');
-  } else{
-     computerChoice='Stump'
-    // console.log(' Computer choise is stump');
-  }
-
-  // reusltMsg;
-  if(computerChoice === 'Ball'){
-    reusltMsg=`It's a tie tie`;
-  }
-  else if(computerChoice=== 'Bat'){
-    reusltMsg= 'You are Out!! Computer has Own ' ;
-  }
-  else if(computerChoice === 'Stump'){
-    reusltMsg='User won.';
-  }
-
-  alert(`You have choosen Ball. Computer choise is ${computerChoice} and ${reusltMsg}`);
-
-  ">Ball</button>
-
-  <button onclick=" 
-  // This will generate random number between 0 to 3
-  randomNumber = Math.random() *3;
-  // computerChoice;
-  if(randomNumber > 0 && randomNumber<= 1){
-     computerChoice ='Bat';
-    // console.log('Computer choise is bat');
-  }
-  else if(randomNumber > 1 && randomNumber<= 2){
-    computerChoice='Ball'
-    // console.log('Computer choise is ball');
-  } else{
-     computerChoice='Stump'
-    // console.log(' Computer choise is stump');
-  }
-
-  // reusltMsg;
-  if(computerChoice === 'Ball'){
-    reusltMsg='Computer has Own ';
-  }else if(computerChoice=== 'Bat'){
-    reusltMsg= 'User won.' ;
-  }
-  else if(computerChoice === 'Stump'){
-    reusltMsg= `It's a tie tie` ;
-  }
-
-  alert(`You have choosen Stump. Computer choise is ${computerChoice} and ${reusltMsg}`);
-
-  ">Stump</button>
-
-</body>
+    function sowResult (userMove , computerMove, result ){
+      alert(`You have choosen ${userMove}. Computer choise is ${computerMove} and ${result}`);
+    }
+    </script>
+  </body>
 </html>
