@@ -56,7 +56,7 @@
     </style>
   </head>
   <body>
-    <h1>Bat Ball Stump Game</h1>
+    <h2>Bat Ball Stump Game</h2>
     <button
       onclick="
         let computerChoice=computerGenerareChoise();
@@ -90,6 +90,11 @@
     <button onclick="localStorage.clear() 
       resetscore();
     ">Reset</button>
+    <h3 id="user-move"></h3>
+    <h3 id="computer-move"></h3>
+    <h3 id="result"></h3>
+    <h3 id="score"></h3>
+
 
     <script>
       let scorestr = localStorage.getItem('Score');
@@ -105,6 +110,7 @@
       score.displayScore= function(){
         return `Score is : Won: ${score.win} , Lost: ${score.lost} , Tie: ${score.tie}`; 
         };
+        sowResult();
       }
       
       function computerGenerareChoise() {
@@ -122,7 +128,7 @@
         if (userMove === "Bat") {
           if (computerMove === "Ball") {
             score.win++;
-            return "User won.";
+            return "You win.";
           } else if (computerMove === "Bat") {
             score.tie++;
             return "It's a tie.";
@@ -157,10 +163,10 @@
 
       function sowResult(userMove, computerMove, result) {
         localStorage.setItem('Score', JSON.stringify(score));
-        alert(`You chose ${userMove}. Computer chose ${computerMove}.
-${result}
-
-${score.displayScore()}`);
+        document.querySelector('#user-move').innerText = userMove!== undefined ? `You have choosen ${userMove}` : '';
+        document.querySelector('#computer-move').innerText = computerMove!== undefined ? `Computer choise is ${computerMove}`: '';
+        document.querySelector('#result').innerText = result!== undefined ? result : '' ;
+        document.querySelector('#score').innerText = score.displayScore();
       }
     </script>
   </body>
