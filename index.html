@@ -134,7 +134,7 @@
             return "It's a tie.";
           } else if (computerMove === "Stump") {
             score.lost++;
-            return "You are Out! Computer won.";
+            return "Computer won.";
           }
         } else if (userMove === "Ball") {
           if (computerMove === "Ball") {
@@ -142,7 +142,7 @@
             return "It's a tie.";
           } else if (computerMove === "Bat") {
             score.lost++;
-            return "You are Out! Computer won.";
+            return "Computer won.";
           } else if (computerMove === "Stump") {
             score.win++;
             return "User won.";
