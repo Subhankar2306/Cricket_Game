@@ -4,170 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bat Ball Stump Game</title>
-    <style>
-      body {
-        font-family: 'Arial', sans-serif;
-        background: linear-gradient(to right, #ff7e5f, #feb47b);
-        color: white;
-        text-align: center;
-        padding: 0;
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      h1 {
-        font-size: 3rem;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-      }
-
-      button {
-        font-size: 1.5rem;
-        padding: 15px 30px;
-        margin: 10px;
-        border: none;
-        border-radius: 30px;
-        cursor: pointer;
-        background: #00c6ff;
-        background: linear-gradient(to right, #0072ff, #00c6ff);
-        color: white;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-      }
-
-      button:hover {
-        transform: scale(1.1);
-      }
-
-      @media (max-width: 768px) {
-        h1 {
-          font-size: 2rem;
-        }
-
-        button {
-          font-size: 1.2rem;
-          padding: 10px 20px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    
   </head>
   <body>
-    <h2>Bat Ball Stump Game</h2>
-    <button
-      onclick="
-        let computerChoice=computerGenerareChoise();
-        let reusltMsg= getResult('Bat', computerChoice);
-        sowResult('Bat', computerChoice, reusltMsg);
-      "
-    >
-      Bat
-    </button>
+    <h1>Bat Ball Stump Game</h1>
+    <h2>Welcome to my Game......... </h2>
+    <h3>Play the game by selecting Bat or Ball or Stump</h3>
+    <button class="choise-button"
+      onclick=" 
+      let computerChoice=computerGenerareChoise();
+      let reusltMsg= getResult('Bat', computerChoice);
+      sowResult('Bat' , computerChoice , reusltMsg); "> <img src="images/bat.png" alt="Bat image" class="choice-image"> </button>
 
-    <button
-      onclick="
-        computerChoice = computerGenerareChoise();
-        reusltMsg = getResult('Ball', computerChoice);
-        sowResult('Ball', computerChoice, reusltMsg);
-      "
-    >
-      Ball
-    </button>
+    <button class="choise-button"
+      onclick=" 
+      computerChoice = computerGenerareChoise();
+      reusltMsg= getResult('Ball', computerChoice);
+      sowResult('Ball' , computerChoice , reusltMsg); "> <img src="images/ball.png" alt="Bat image" class="choice-image"> </button>
 
-    <button
-      onclick="
-        computerChoice = computerGenerareChoise();
-        reusltMsg = getResult('Stump', computerChoice);
-        sowResult('Stump', computerChoice, reusltMsg);
-      "
-    >
-      Stump
-    </button>
-    
-    <button onclick="localStorage.clear() 
-      resetscore();
-    ">Reset</button>
+    <button class="choise-button"
+      onclick=" 
+      computerChoice = computerGenerareChoise();
+      reusltMsg= getResult('Stump', computerChoice);
+      sowResult('Stump' , computerChoice , reusltMsg); "> <img src="images/Stump.png" alt="Bat image" class="choice-image"> </button>
+
     <h3 id="user-move"></h3>
     <h3 id="computer-move"></h3>
     <h3 id="result"></h3>
     <h3 id="score"></h3>
 
+    <button class="reset-button" onclick="localStorage.clear() 
+    resetscore();
+    "><img src="images/reset icon.png" alt="Bat image" class="reset-icon">Reset</button>
 
-    <script>
-      let scorestr = localStorage.getItem('Score');
-      let score;
-      resetscore(scorestr);
-
-      function resetscore(scorestr){
-        score = scorestr ? JSON.parse(scorestr) : {
-          win:0,
-          lost: 0,
-          tie: 0,
-        };
-      score.displayScore= function(){
-        return `Score is : Won: ${score.win} , Lost: ${score.lost} , Tie: ${score.tie}`; 
-        };
-        sowResult();
-      }
-      
-      function computerGenerareChoise() {
-        let randomNumber = Math.random() * 3;
-        if (randomNumber > 0 && randomNumber <= 1) {
-          return "Bat";
-        } else if (randomNumber > 1 && randomNumber <= 2) {
-          return "Ball";
-        } else {
-          return "Stump";
-        }
-      }
-
-      function getResult(userMove, computerMove) {
-        if (userMove === "Bat") {
-          if (computerMove === "Ball") {
-            score.win++;
-            return "You win.";
-          } else if (computerMove === "Bat") {
-            score.tie++;
-            return "It's a tie.";
-          } else if (computerMove === "Stump") {
-            score.lost++;
-            return "Computer won.";
-          }
-        } else if (userMove === "Ball") {
-          if (computerMove === "Ball") {
-            score.tie++;
-            return "It's a tie.";
-          } else if (computerMove === "Bat") {
-            score.lost++;
-            return "Computer won.";
-          } else if (computerMove === "Stump") {
-            score.win++;
-            return "User won.";
-          }
-        } else {
-          if (computerMove === "Ball") {
-            score.lost++;
-            return "Computer won.";
-          } else if (computerMove === "Bat") {
-            score.win++;
-            return "User won.";
-          } else if (computerMove === "Stump") {
-            score.tie++;
-            return "It's a tie.";
-          }
-        }
-      }
-
-      function sowResult(userMove, computerMove, result) {
-        localStorage.setItem('Score', JSON.stringify(score));
-        document.querySelector('#user-move').innerText = userMove!== undefined ? `You have choosen ${userMove}` : '';
-        document.querySelector('#computer-move').innerText = computerMove!== undefined ? `Computer choise is ${computerMove}`: '';
-        document.querySelector('#result').innerText = result!== undefined ? result : '' ;
-        document.querySelector('#score').innerText = score.displayScore();
-      }
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
